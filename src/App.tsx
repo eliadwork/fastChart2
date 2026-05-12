@@ -39,7 +39,7 @@ const App = () => {
                 resampling: { enable: true, precision: 1 },
               }}
               icons={DEFAULT_CHART_ICONS}
-              implementationComponent={SciChartWrapper}
+              ImplementationComponent={SciChartWrapper}
             />
           </ChartPanel>
           <ChartPanel>
@@ -51,7 +51,7 @@ const App = () => {
               options={{
                 note: 'this is the chart example',
               }}
-              implementationComponent={SciChartWrapper}
+              ImplementationComponent={SciChartWrapper}
             />
           </ChartPanel>
         </ChartComparisonGrid>
@@ -65,7 +65,7 @@ const App = () => {
             clipZoomToData: true,
           }}
           icons={DEFAULT_CHART_ICONS}
-          implementationComponent={SciChartWrapper}
+          ImplementationComponent={SciChartWrapper}
         />
       </Box>
     </ChartComparison>

@@ -23,7 +23,7 @@ export const FastChartingPanel = ({
   options,
   shapes,
   icons,
-  implementationComponent,
+  ImplementationComponent,
   className,
 }: FastChartingPanelProps) => {
   const [expanded, setExpanded] = useState(false);
@@ -48,7 +48,7 @@ export const FastChartingPanel = ({
               options={options}
               shapes={shapes}
               icons={icons}
-              implementationComponent={implementationComponent}
+              ImplementationComponent={ImplementationComponent}
               className={className}
               fill
             />

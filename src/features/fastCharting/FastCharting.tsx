@@ -24,7 +24,7 @@ export interface FastChartingProps {
   options?: ChartOptions;
   shapes?: ChartShape[];
   icons?: ChartIcon[];
-  implementationComponent: React.ComponentType<ChartImplementationProps>;
+  ImplementationComponent: React.ComponentType<ChartImplementationProps>;
   /** When true, fills container (100% width/height). When false, uses draggable resize. */
   fill?: boolean;
   /** Forwarded to root element for styled(FastCharting). */
@@ -39,7 +39,7 @@ export const FastCharting = ({
   options,
   shapes,
   icons,
-  implementationComponent,
+  ImplementationComponent,
   fill = false,
   className,
 }: FastChartingProps) => {
@@ -63,7 +63,7 @@ export const FastCharting = ({
           shapes={resolvedInputs.shapes}
           icons={resolvedInputs.icons}
           chartStyle={style}
-          implementationComponent={implementationComponent}
+          ImplementationComponent={ImplementationComponent}
         />
       </FastChartingChartWrapper>
       {!fill && <FastChartingResizeHandle {...resizeHandleProps} />}

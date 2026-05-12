@@ -9,7 +9,6 @@ import {
   ChartZoomBackIcon,
   ChartZoomResetIcon,
 } from '../assets/chartIcons';
-import { InfoTooltip } from '../shared';
 import {
   ChartPanelHeader,
   ChartPanelHeaderText,
@@ -28,6 +27,7 @@ import { ChartToolbarButton } from './ChartToolbarButton';
 import { useChart } from './hooks/useChart';
 import { useChartLegendSlot } from './hooks/useChartLegendSlot';
 import { getChartHowToUseText } from './utils/getChartHowToUseText';
+import { InfoTooltip } from '../shared/InfoTooltip';
 
 export interface ChartProps {
   data: ChartData | null;
@@ -42,7 +42,7 @@ export interface ChartProps {
   defaultLineColor?: string;
   onSeriesVisibilityChange?: (visibility: boolean[]) => void;
   toolbarSlot?: React.ReactNode | ((props: { textColor: string }) => React.ReactNode);
-  implementationComponent: React.ComponentType<ChartImplementationProps>;
+  ImplementationComponent: React.ComponentType<ChartImplementationProps>;
 }
 
 export interface ChartHeaderSectionProps {
@@ -147,7 +147,7 @@ const ChartComponent = ({
   defaultLineColor,
   onSeriesVisibilityChange,
   toolbarSlot,
-  implementationComponent,
+  ImplementationComponent,
 }: ChartProps) => {
   const {
     loading,
@@ -187,8 +187,6 @@ const ChartComponent = ({
       resolvedOptions.howToUseAdditional,
     ]
   );
-
-  const ImplementationComponent = implementationComponent;
 
   return (
     <ChartWrapperBox>

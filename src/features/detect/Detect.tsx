@@ -30,7 +30,7 @@ export interface DetectProps {
   shapes?: ChartShape[];
   icons?: ChartIcon[];
   visualConfig?: Partial<DetectVisualConfig>;
-  implementationComponent: React.ComponentType<ChartImplementationProps>;
+  ImplementationComponent: React.ComponentType<ChartImplementationProps>;
   className?: string;
 }
 
@@ -43,7 +43,7 @@ export const Detect = ({
   shapes,
   icons,
   visualConfig,
-  implementationComponent,
+  ImplementationComponent,
   className,
 }: DetectProps) => {
   const resolvedInputs = resolveDetectInputs({ options, shapes, icons });
@@ -106,7 +106,7 @@ export const Detect = ({
     onCancelFlow: detectPointMarkFlow.onCancelFlow,
   });
 
-  const shapesVisibilityToolbar = ({ textColor }: { textColor: string }) => (
+  const ShapesVisibilityToolbar = ({ textColor }: { textColor: string }) => (
     <ShapesVisibilityToolbarButton
       textColor={textColor}
       showShapesForHiddenSeries={showShapesForHiddenSeries}
@@ -125,8 +125,8 @@ export const Detect = ({
         icons={finalIcons}
         chartStyle={style}
         onSeriesVisibilityChange={onSeriesVisibilityChange}
-        toolbarSlot={shapesVisibilityToolbar}
-        implementationComponent={implementationComponent}
+        toolbarSlot={ShapesVisibilityToolbar}
+        ImplementationComponent={ImplementationComponent}
       />
       <SeriesPickerModal
         open={open}
