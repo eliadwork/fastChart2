@@ -22,12 +22,10 @@ export class MouseHoverModifier extends ChartModifierBase2D {
     super();
     this.onHover = options?.onHover;
     this.receiveHandledEvents = true;
-    console.log('[MouseHoverModifier] constructed; onHover set:', this.onHover != null);
   }
 
   modifierMouseMove(args: ModifierMouseArgs): void {
     super.modifierMouseMove(args);
-    console.log('[MouseHoverModifier] modifierMouseMove fired, onHover set:', this.onHover != null);
     if (!this.onHover) return;
 
     const translated = translateFromCanvasToSeriesViewRect(

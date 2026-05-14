@@ -1,4 +1,3 @@
-import type { ChartShape } from './chart';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -6,10 +5,11 @@ import { styled } from '@mui/material/styles';
 
 import { DEFAULT_CHART_ICONS } from './chart/defaultsChartStyles';
 import { SciChartWrapper } from './chart/implementation/scichart/SciChartWrapper';
-import { useChartDataFlow } from './features/chartData';
 import { Detect } from './features/detect/Detect';
 import { FastChartingPanel } from './features/fastCharting/FastChartingPanel';
 import { ChartComparison, ChartComparisonGrid, ChartPanel } from './styled/ChartStyled';
+import { useChartDataFlow } from './features/chartData/hooks/useChartDataFlow';
+import type { ChartShape } from './chart/types';
 
 const App = () => {
   const { chartData, canAddLine, addLine } = useChartDataFlow();

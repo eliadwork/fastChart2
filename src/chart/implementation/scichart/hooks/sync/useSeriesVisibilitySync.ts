@@ -9,7 +9,7 @@ export function useSeriesVisibilitySync(
     if (!surface) return;
     const series = surface.renderableSeries.asArray();
     for (let index = 0; index < series.length; index++) {
-      (series[index] as { isVisible: boolean }).isVisible = seriesVisibility[index];
+      series[index].isVisible = seriesVisibility[index];
     }
     surface.invalidateElement();
   }, [surface, seriesVisibility]);

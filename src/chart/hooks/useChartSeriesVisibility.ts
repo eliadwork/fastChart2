@@ -78,7 +78,6 @@ export const useChartSeriesVisibility = ({
       initialSeriesCount
     );
 
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSeriesVisibilityState((previousVisibility) => {
       // `previousVisibility` is the latest committed state (safe against stale closures).
       const normalizedPreviousVisibility = normalizeSeriesVisibility(

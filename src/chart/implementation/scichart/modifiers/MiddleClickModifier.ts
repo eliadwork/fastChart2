@@ -81,7 +81,7 @@ export class MiddleClickModifier extends ChartModifierBase2D {
     const getSeriesVisibility = () =>
       this.parentSurface.renderableSeries
         .asArray()
-        .map((rs) => (rs as { isVisible: boolean }).isVisible);
+        .map((rs) => (rs).isVisible);
 
     const middleClickEvent = Object.assign(mouseEvent, {
       chartXValue: xValue,

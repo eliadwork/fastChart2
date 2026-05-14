@@ -1,15 +1,5 @@
-import type {
-  ChartData,
-  ChartIcon,
-  ChartImplementationProps,
-  ChartOptions,
-  ChartShape,
-  ChartStyle,
-} from '../../chart';
-
 import { useMemo } from 'react';
 
-import { Chart } from '../../chart';
 import { ShapesVisibilityToolbarButton } from './component/ShapesVisibilityToolbarButton';
 import { SeriesPickerModal } from './component/popupModal/SeriesPickerModal';
 import { resolveDetectVisualConfig } from './detectVisualConfig';
@@ -20,6 +10,9 @@ import {
   useDetectPointMarkFlow,
 } from './hooks/useDetectPointMarkFlow';
 import type { DetectVisualConfig } from './detectVisualConfig';
+import type { ChartData, ChartIcon, ChartOptions, ChartShape, ChartStyle } from '../../chart/types';
+import type { ChartImplementationProps } from '../../chart/implementation/implementationProps';
+import { Chart } from '../../chart/Chart';
 
 export interface DetectProps {
   chartId: string;

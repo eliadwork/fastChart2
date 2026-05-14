@@ -1,13 +1,4 @@
-import type {
-  ChartData,
-  ChartIcon,
-  ChartImplementationProps,
-  ChartOptions,
-  ChartShape,
-  ChartStyle,
-} from '../../chart';
 
-import { Chart } from '../../chart';
 import { resolveFastChartingInputs } from './resolveFastChartingInputs';
 import { useResizableChart } from './hooks/useResizableChart';
 import {
@@ -15,6 +6,9 @@ import {
   FastChartingResizeHandle,
   FastChartingRoot,
 } from './FastChartingStyled';
+import type { ChartData, ChartIcon, ChartOptions, ChartShape, ChartStyle } from '../../chart/types';
+import type { ChartImplementationProps } from '../../chart/implementation/implementationProps';
+import { Chart } from '../../chart/Chart';
 
 export interface FastChartingProps {
   chartId: string;

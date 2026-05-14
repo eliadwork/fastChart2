@@ -17,8 +17,6 @@ import type { ResolvedSciChartIcon } from '../../scichartOptions';
 
 const ICON_PX_BASE = 24;
 const FONT_SIZE_BASE = 20;
-const ICON_URL_PATTERN = /^https?:\/\//;
-const ICON_FILE_PATTERN = /\.(png|jpg|jpeg|svg|gif|webp)(\?|$)/i;
 
 export interface UseIconsSyncOptions {
   surface?: SciChartSurface;
@@ -44,9 +42,7 @@ export const useIconsSync = ({ surface, icons }: UseIconsSyncOptions) => {
       const iconSize = icon.size;
       const iconPx = Math.round(ICON_PX_BASE * iconSize);
       const isSvgOrImage =
-        icon.iconImage.startsWith('<') ||
-        ICON_URL_PATTERN.test(icon.iconImage) ||
-        ICON_FILE_PATTERN.test(icon.iconImage);
+        icon.iconImage.startsWith('<')
       const annotation = isSvgOrImage
         ? new CustomAnnotation({
             x1: x,
