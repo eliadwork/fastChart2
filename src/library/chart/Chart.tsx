@@ -8,14 +8,14 @@ import {
   ChartVisibilityOnIcon,
   ChartZoomBackIcon,
   ChartZoomResetIcon,
-} from '../assets/chartIcons';
+} from '../../assets/chartIcons';
 import {
   ChartPanelHeader,
   ChartPanelHeaderText,
   ChartPanelNote,
   ChartPanelTitle,
   ChartWrapperBox,
-} from '../styled/ChartStyled';
+} from '../../styled/ChartStyled';
 import {
   CHART_TOOLTIP_DISABLE_ALL,
   CHART_TOOLTIP_ENABLE_ALL,
@@ -27,7 +27,7 @@ import { ChartToolbarButton } from './ChartToolbarButton';
 import { useChart } from './hooks/useChart';
 import { useChartLegendSlot } from './hooks/useChartLegendSlot';
 import { getChartHowToUseText } from './utils/getChartHowToUseText';
-import { InfoTooltip } from '../shared/InfoTooltip';
+import { InfoTooltip } from '../InfoTooltip/InfoTooltip';
 import { ChartCursorTooltip } from './ChartCursorTooltip';
 
 export interface ChartProps {

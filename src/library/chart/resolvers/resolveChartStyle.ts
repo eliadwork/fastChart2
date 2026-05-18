@@ -1,4 +1,4 @@
-import { withOpacity } from '../../utils/colorUtils';
+import { withOpacity } from '../../../utils/colorUtils';
 import {
   CHART_BACKGROUND_OPACITY_DEFAULT,
   CHART_DEFAULT_ICON_COLOR,

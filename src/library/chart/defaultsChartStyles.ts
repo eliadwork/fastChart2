@@ -6,7 +6,7 @@ import type { ChartLineStyle } from './types';
 
 import type { ChartIcon } from './types';
 
-import { DEFAULT_POINT_MARK_ICON_SVG } from '../assets/pointMarkIcon';
+import { DEFAULT_POINT_MARK_ICON_SVG } from '../../assets/pointMarkIcon';
 
 /** Default styling for shapes when no style is specified. */
 export const DEFAULT_SHAPE_STYLE: Pick<ChartLineStyle, 'color' | 'thickness' | 'dash'> = {

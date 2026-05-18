@@ -1,5 +1,5 @@
 import Tooltip from '@mui/material/Tooltip';
-import { ChartToolbarButtonBase } from '../styled/ChartStyled';
+import { ChartToolbarButtonBase } from '../../styled/ChartStyled';
 
 export interface ChartToolbarButtonProps extends React.ComponentProps<
   typeof ChartToolbarButtonBase
