@@ -13,6 +13,7 @@ export const InfoTooltipRoot = styled('span')({
   cursor: 'help',
   flexShrink: 0,
   '&:hover': { opacity: INFO_TOOLTIP_OPACITY_HOVER },
+
 });
 
 export interface InfoTooltipIconProps {

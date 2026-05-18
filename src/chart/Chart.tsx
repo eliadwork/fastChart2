@@ -114,15 +114,18 @@ const ChartHeaderSection = ({
     <ChartPanelHeader sx={headerModel.headerSx}>
       <ChartPanelHeaderText>
         <ChartHeaderContent>
-          <InfoTooltip title={howToUseText} color={headerModel.textColor} />
           <ChartHeaderTextContent>
             {headerModel.title != null && (
-              <ChartPanelTitle variant="subtitle1">{headerModel.title}</ChartPanelTitle>
+              <ChartPanelTitle variant="subtitle1">
+                {headerModel.title}
+                <InfoTooltip title={howToUseText} color={headerModel.textColor} />
+              </ChartPanelTitle>
             )}
             {headerModel.note != null && (
               <ChartPanelNote variant="body2">{headerModel.note}</ChartPanelNote>
             )}
           </ChartHeaderTextContent>
+          
         </ChartHeaderContent>
       </ChartPanelHeaderText>
       <ChartToolbarSection

@@ -76,7 +76,6 @@ export class MiddleClickModifier extends ChartModifierBase2D {
       clientX,
       clientY,
       button: MIDDLE_MOUSE_BUTTON,
-      bubbles: true,
     });
     const getSeriesVisibility = () =>
       this.parentSurface.renderableSeries

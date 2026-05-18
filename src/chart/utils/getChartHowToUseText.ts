@@ -58,7 +58,7 @@ export const getChartHowToUseText = ({
 
   let text = parts.join(' • ');
   if (howToUseAdditional?.trim()) {
-    text += `\n\n${howToUseAdditional.trim()}`;
+    text += howToUseAdditional.trim();
   }
   return text;
 };
