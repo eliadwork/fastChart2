@@ -3,7 +3,7 @@ import type { ChartData, ChartStyle } from '../types';
 import { useTheme } from '@mui/material/styles';
 import { useMemo } from 'react';
 
-import { withOpacity } from '../../../utils/colorUtils';
+import { withOpacity } from '../utils/colorUtils';
 import {
   CHART_LEGEND_BACKGROUND_OPACITY,
   DEFAULT_LEGEND_BACKGROUND_COLOR,

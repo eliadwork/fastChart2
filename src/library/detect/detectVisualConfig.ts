@@ -1,4 +1,4 @@
-import { DEFAULT_POINT_MARK_ICON_SVG } from '../../assets/pointMarkIcon';
+import { DEFAULT_POINT_MARK_ICON_SVG } from '../chart/assets/pointMarkIcon';
 
 const DEFAULT_POINT_MARK_COLORS = {
   red: '#b85c5c',

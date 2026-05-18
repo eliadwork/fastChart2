@@ -8,7 +8,7 @@ import {
   ChartVisibilityOnIcon,
   ChartZoomBackIcon,
   ChartZoomResetIcon,
-} from '../../assets/chartIcons';
+} from './assets/chartIcons';
 import {
   ChartPanelHeader,
   ChartPanelHeaderText,

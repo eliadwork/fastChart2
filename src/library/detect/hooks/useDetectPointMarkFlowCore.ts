@@ -1,7 +1,7 @@
 import { useSnackbar } from 'notistack';
 import { useCallback, useMemo, useState } from 'react';
 
-import { getInterpolatedPointAtX } from '../../../utils/chartDataLookup';
+import { getInterpolatedPointAtX } from '../../chart/utils/chartDataLookup';
 import {
   DETECT_POINT_MARK_CLICK_RESTORE_COUNT,
   DETECT_POINT_MARK_CLICK_TARGET_COUNT,

@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 
 import type { ChartHoverPayload } from '../implementation/scichart/modifiers/MouseHoverModifier';
-import { getInterpolatedPointAtX } from '../../../utils/chartDataLookup';
+import { getInterpolatedPointAtX } from '../utils/chartDataLookup';
 import type { ChartData } from '../types';
 
 type HoverEvent = MouseEvent & Partial<ChartHoverPayload>;

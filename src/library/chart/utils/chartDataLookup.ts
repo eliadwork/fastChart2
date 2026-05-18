@@ -1,9 +1,3 @@
-/**
- * Chart data lookup utilities.
- * Given an X value from a chart click, find the corresponding Y value
- * (nearest data point) for use across multiple charts.
- */
-
 export interface ChartDataLike {
   /** Array of lines, each with x and y. Used for per-line data format. */
   lines?: Array<{ x: ArrayLike<number> | number[]; y: ArrayLike<number> | number[] }>;
