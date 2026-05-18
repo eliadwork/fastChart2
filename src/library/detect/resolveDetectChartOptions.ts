@@ -1,4 +1,4 @@
-import type { ChartOptions } from '../../library/chart';
+import type { ChartOptions } from '../chart';
 
 import { DETECT_HOW_TO_USE_ADDITIONAL } from './detectConstants';
 import type { DetectHoverEvent } from './hooks/detectPointMarkFlowTypes';

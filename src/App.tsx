@@ -1,15 +1,13 @@
-
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 
-import { DEFAULT_CHART_ICONS } from './library/chart/defaultsChartStyles';
-import { SciChartWrapper } from './library/chart/implementation/scichart/SciChartWrapper';
-import { Detect } from './library/detect/Detect';
+import { DEFAULT_CHART_ICONS, Detect } from './library';
+import { SciChartWrapper } from './library/chart/implementation/scichart';
 import { FastChartingPanel } from './features/fastCharting/FastChartingPanel';
 import { ChartComparison, ChartComparisonGrid, ChartPanel } from './styled/ChartStyled';
 import { useChartDataFlow } from './features/chartData/hooks/useChartDataFlow';
-import type { ChartShape } from './library/chart/types';
+import type { ChartShape } from './library';
 
 const App = () => {
   const { chartData, canAddLine, addLine } = useChartDataFlow();
