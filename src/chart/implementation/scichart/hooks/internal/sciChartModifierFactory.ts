@@ -15,9 +15,6 @@ import { ZoomHistoryModifier } from '../../modifiers/ZoomHistoryModifier';
 import type { ResolvedSciChartOptions } from '../../scichartOptions';
 import { SCI_CHART_STRETCH_SENSITIVITY } from '../../sciChartWrapperConstants';
 
-const ROLLOVER_TOOLTIP_SERIES_LABEL = (seriesName: string) => `${seriesName}:`;
-const ROLLOVER_TOOLTIP_X_LABEL = (formattedX: string) => `X: ${formattedX}`;
-const ROLLOVER_TOOLTIP_Y_LABEL = (formattedY: string) => `Y: ${formattedY}`;
 
 export interface CreateSciChartModifiersOptions {
   interactionOptions: Pick<ResolvedSciChartOptions, 'features' | 'events'>;
@@ -84,11 +81,7 @@ export const createSciChartModifiers = ({
 
     modifiers.push(
       new RolloverModifier({
-        tooltipDataTemplate: (seriesInfo) => [
-          ROLLOVER_TOOLTIP_SERIES_LABEL(seriesInfo.seriesName),
-          ROLLOVER_TOOLTIP_X_LABEL(seriesInfo.formattedXValue),
-          ROLLOVER_TOOLTIP_Y_LABEL(seriesInfo.formattedYValue),
-        ],
+        showTooltip:false,
         rolloverLineStroke: rolloverConfig.color,
         rolloverLineStrokeDashArray: rolloverDash == null ? [] : rolloverDash,
       })

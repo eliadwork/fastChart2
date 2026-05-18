@@ -1,8 +1,10 @@
 import type { ChartData, ChartIcon, ChartOptions, ChartShape, ChartStyle } from '../types';
+import type { CursorTooltipData } from './useRolloverLegendData';
 
 import { useMemo } from 'react';
 import { useChartHeaderState } from './useChartHeaderState';
 import { useChartLegendProps } from './useChartLegendProps';
+import { useRolloverLegendData } from './useRolloverLegendData';
 import {
   resolveChartDefinition,
   resolveChartData,
@@ -51,6 +53,8 @@ export interface UseChartResult {
   loading: boolean;
   options: ResolvedChartOptions;
   legendProps: ReturnType<typeof useChartLegendProps>;
+  hoveredSeriesValues: (string | null)[] | null;
+  cursorTooltipData: CursorTooltipData | null;
   headerModel: ChartHeaderModel;
   toolbarModel: ChartToolbarModel;
   implementationModel: ChartImplementationModel;
@@ -75,6 +79,7 @@ export const useChart = ({
   const chartData = resolveChartData(data, wrapperStyle, defaultLineColor);
 
   const { zoomCallbacks, zoomBackRef, zoomResetRef, canZoomBack } = useChartZoomCallbacks();
+  const { onHover: onRolloverHover, formattedHoveredValues, cursorTooltipData } = useRolloverLegendData(chartData);
 
   const {
     seriesVisibility,
@@ -100,18 +105,27 @@ export const useChart = ({
       }),
     [chartData, resolvedOptions, wrapperStyle, shapes, icons, seriesVisibility]
   );
-  const definitionWithZoomCallbacks = useMemo(
-    () => ({
+  const definitionWithZoomCallbacks = useMemo(() => {
+    const userHover = definition.options.events?.hover;
+    const mergedHover = userHover
+      ? (event: MouseEvent) => {
+          onRolloverHover(event);
+          userHover(event);
+        }
+      : onRolloverHover;
+
+    return {
       ...definition,
       options: {
         ...definition.options,
-        events: definition.options.events
-          ? { ...definition.options.events, zoom: zoomCallbacks }
-          : { zoom: zoomCallbacks },
+        events: {
+          ...definition.options.events,
+          zoom: zoomCallbacks,
+          hover: mergedHover,
+        },
       },
-    }),
-    [definition, zoomCallbacks]
-  );
+    };
+  }, [definition, zoomCallbacks, onRolloverHover]);
 
   const textColor = wrapperStyle.textColor;
 
@@ -138,6 +152,8 @@ export const useChart = ({
     loading,
     options: resolvedOptions,
     legendProps,
+    hoveredSeriesValues: formattedHoveredValues,
+    cursorTooltipData,
     headerModel: {
       showHeader,
       headerSx,

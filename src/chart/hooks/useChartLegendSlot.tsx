@@ -5,9 +5,13 @@ import type { ResolvedLegendProps } from '../resolvers/resolveLegendProps';
 
 export interface UseChartLegendSlotParams {
   legendProps: ResolvedLegendProps | null;
+  hoveredSeriesValues?: (string | null)[] | null;
 }
 
-export const useChartLegendSlot = ({ legendProps }: UseChartLegendSlotParams): React.ReactNode => {
+export const useChartLegendSlot = ({
+  legendProps,
+  hoveredSeriesValues,
+}: UseChartLegendSlotParams): React.ReactNode => {
   return useMemo(() => {
     if (legendProps == null) {
       return null;
@@ -20,9 +24,10 @@ export const useChartLegendSlot = ({ legendProps }: UseChartLegendSlotParams): R
         series={legendProps.series}
         seriesVisibility={legendProps.seriesVisibility}
         seriesGroupKeys={legendProps.seriesGroupKeys}
+        hoveredSeriesValues={hoveredSeriesValues}
         onSeriesVisibilityChange={legendProps.onSeriesVisibilityChange}
         onSeriesVisibilityGroupChange={legendProps.onSeriesVisibilityGroupChange}
       />
     );
-  }, [legendProps]);
+  }, [legendProps, hoveredSeriesValues]);
 };

@@ -9,11 +9,14 @@ export interface MouseHoverModifierOptions {
   onHover?: (event: MouseEvent) => void;
 }
 
-/**
- * Generic mouse-hover modifier. Calls the optional hover handler with a MouseEvent
- * on every mouse move over the chart. Chart coordinates are attached on the event
- * object as: chartXValue, chartYValue.
- */
+/** Attached to the MouseEvent fired by MouseHoverModifier on every mouse move. */
+export type ChartHoverPayload = {
+  /** Data-space coordinates (units of the chart axes). */
+  dataPoint: { x: number; y: number };
+  /** Pixel coordinates relative to the canvas element's top-left corner. */
+  canvasPoint: { x: number; y: number };
+};
+
 export class MouseHoverModifier extends ChartModifierBase2D {
   readonly type = EChart2DModifierType.Custom;
   private onHover?: (event: MouseEvent) => void;
@@ -22,6 +25,11 @@ export class MouseHoverModifier extends ChartModifierBase2D {
     super();
     this.onHover = options?.onHover;
     this.receiveHandledEvents = true;
+  }
+
+  modifierMouseLeave(args: ModifierMouseArgs): void {
+    super.modifierMouseLeave(args);
+    this.onHover?.(new MouseEvent('mouseleave', { bubbles: true }));
   }
 
   modifierMouseMove(args: ModifierMouseArgs): void {
@@ -36,30 +44,29 @@ export class MouseHoverModifier extends ChartModifierBase2D {
 
     const xAxis = this.getIncludedXAxis()[0];
     if (!xAxis) return;
-
     const xCoordCalc = xAxis.getCurrentCoordinateCalculator();
     if (!xCoordCalc) return;
 
-    const xValue = xCoordCalc.getDataValue(translated.x);
     const yAxis = this.getIncludedYAxis()[0];
     const yCoordCalc = yAxis?.getCurrentCoordinateCalculator();
-    const yValue = yCoordCalc ? yCoordCalc.getDataValue(translated.y) : 0;
 
     const rect = this.parentSurface.domCanvas2D?.getBoundingClientRect();
     const clientX = rect ? rect.left + args.mousePoint.x : args.mousePoint.x;
     const clientY = rect ? rect.top + args.mousePoint.y : args.mousePoint.y;
 
-    const mouseEvent = new MouseEvent('mousemove', {
-      clientX,
-      clientY,
-      bubbles: true,
-    });
+    const payload: ChartHoverPayload = {
+      dataPoint: {
+        x: xCoordCalc.getDataValue(translated.x),
+        y: yCoordCalc ? yCoordCalc.getDataValue(translated.y) : 0,
+      },
+      canvasPoint: {
+        x: args.mousePoint.x,
+        y: args.mousePoint.y,
+      },
+    };
 
-    const hoverEvent = Object.assign(mouseEvent, {
-      chartXValue: xValue,
-      chartYValue: yValue,
-    });
-
-    this.onHover(hoverEvent);
+    this.onHover(
+      Object.assign(new MouseEvent('mousemove', { clientX, clientY, bubbles: true }), payload)
+    );
   }
 }

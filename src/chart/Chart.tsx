@@ -28,6 +28,7 @@ import { useChart } from './hooks/useChart';
 import { useChartLegendSlot } from './hooks/useChartLegendSlot';
 import { getChartHowToUseText } from './utils/getChartHowToUseText';
 import { InfoTooltip } from '../shared/InfoTooltip';
+import { ChartCursorTooltip } from './ChartCursorTooltip';
 
 export interface ChartProps {
   data: ChartData | null;
@@ -156,6 +157,8 @@ const ChartComponent = ({
     loading,
     options: resolvedOptions,
     legendProps,
+    hoveredSeriesValues,
+    cursorTooltipData,
     headerModel,
     toolbarModel,
     implementationModel,
@@ -173,6 +176,7 @@ const ChartComponent = ({
 
   const legendSlot = useChartLegendSlot({
     legendProps,
+    hoveredSeriesValues,
   });
 
   const howToUseText = useMemo(
@@ -204,7 +208,12 @@ const ChartComponent = ({
         chartId={implementationModel.chartId}
         definition={implementationModel.definition}
         containerStyle={style}
-        overlaySlot={legendSlot}
+        overlaySlot={
+          <>
+            {legendSlot}
+            {cursorTooltipData && <ChartCursorTooltip data={cursorTooltipData} />}
+          </>
+        }
         loading={loading}
       />
     </ChartWrapperBox>

@@ -23,6 +23,12 @@ export const LEGEND_ITEM_INDENT = '1.5rem';
 /** Max height of legend container. */
 export const LEGEND_MAX_HEIGHT = '90%';
 
+/** Fixed width of the legend panel — prevents expansion when hover values appear. */
+export const LEGEND_FIXED_WIDTH = '13rem';
+
+/** Duration of one marquee scroll cycle. */
+export const LEGEND_MARQUEE_DURATION = '9s';
+
 /** Default fallback when series has no name. */
 export const LEGEND_SERIES_NAME_PREFIX = 'Series';
 
@@ -42,5 +48,5 @@ export const LEGEND_BORDER_RADIUS = 0.25;
 export const LEGEND_GROUP_GAP = 0.1;
 export const LEGEND_ITEM_PADDING_BLOCK = 0.15;
 export const LEGEND_FONT_SIZE = 0.8;
-export const LEGEND_DEFAULT_BACKGROUND = 'rgba(0,0,0,0.6)';
+export const LEGEND_DEFAULT_BACKGROUND = 'rgba(0,0,0,0.55)';
 export const LEGEND_DEFAULT_TEXT_COLOR = '#ffffff';

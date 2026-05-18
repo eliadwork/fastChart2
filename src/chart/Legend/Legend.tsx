@@ -1,9 +1,14 @@
+import { useLayoutEffect, useRef, useState } from 'react';
+
 import type { LegendSeriesItemModel, SeriesInfo } from './useLegend';
 import { useLegend } from './useLegend';
 import {
   LegendRoot,
   LegendItemButton,
   LegendItemLabel,
+  LegendValueOuter,
+  LegendValueMarqueeInner,
+  LegendValueCopy,
   LegendGroup,
   LegendLineSvg,
 } from './LegendStyled';
@@ -33,6 +38,8 @@ export interface LegendProps {
   seriesVisibility?: boolean[];
   /** Group key per series (parallel to series). Same key = grouped together, toggle on/off as one. */
   seriesGroupKeys?: (string | undefined)[];
+  /** Formatted (x, y) values per series index shown while hovering. null entry = no value for that series. */
+  hoveredSeriesValues?: (string | null)[] | null;
   onSeriesVisibilityChange?: (index: number, visible: boolean) => void;
   onSeriesVisibilityGroupChange?: (indices: number[], visible: boolean) => void;
 }
@@ -61,13 +68,49 @@ const LegendLine = ({ stroke, strokeThickness, strokeDashArray }: LegendLineProp
   </LegendLineSvg>
 );
 
+const ScrollingValue = ({ value }: { value: string }) => {
+  const outerRef = useRef<HTMLSpanElement>(null);
+  const measureRef = useRef<HTMLSpanElement>(null);
+  const [scrolling, setScrolling] = useState(false);
+
+  useLayoutEffect(() => {
+    const outer = outerRef.current;
+    const measure = measureRef.current;
+    if (outer && measure) {
+      setScrolling(measure.scrollWidth > outer.clientWidth);
+    }
+  }, [value]);
+
+  return (
+    <LegendValueOuter ref={outerRef}>
+      <span
+        ref={measureRef}
+        style={
+          scrolling
+            ? { position: 'absolute', visibility: 'hidden' }
+            : { whiteSpace: 'nowrap' }
+        }
+      >
+        {value}
+      </span>
+      {scrolling && (
+        <LegendValueMarqueeInner>
+          <LegendValueCopy>{value}</LegendValueCopy>
+          <LegendValueCopy aria-hidden>{value}</LegendValueCopy>
+        </LegendValueMarqueeInner>
+      )}
+    </LegendValueOuter>
+  );
+};
+
 export interface LegendSeriesItemProps {
   series: SeriesInfo;
+  hoveredValue?: string | null;
   onClick: () => void;
   indent?: boolean;
 }
 
-const LegendSeriesItem = ({ series, onClick, indent }: LegendSeriesItemProps) => (
+const LegendSeriesItem = ({ series, hoveredValue, onClick, indent }: LegendSeriesItemProps) => (
   <LegendItemButton
     type="button"
     onClick={onClick}
@@ -85,6 +128,7 @@ const LegendSeriesItem = ({ series, onClick, indent }: LegendSeriesItemProps) =>
       strokeDashArray={series.strokeDashArray}
     />
     <LegendItemLabel>{series.name}</LegendItemLabel>
+    {hoveredValue != null && <ScrollingValue value={hoveredValue} />}
   </LegendItemButton>
 );
 
@@ -94,6 +138,7 @@ export const Legend = ({
   series,
   seriesVisibility,
   seriesGroupKeys,
+  hoveredSeriesValues,
   onSeriesVisibilityChange,
   onSeriesVisibilityGroupChange,
 }: LegendProps) => {
@@ -152,6 +197,7 @@ export const Legend = ({
               <LegendSeriesItem
                 key={series.index}
                 series={series}
+                hoveredValue={hoveredSeriesValues?.[series.index]}
                 onClick={() => handleClick(series.index)}
                 indent
               />
@@ -163,6 +209,7 @@ export const Legend = ({
         <LegendSeriesItem
           key={series.index}
           series={series}
+          hoveredValue={hoveredSeriesValues?.[series.index]}
           onClick={() => handleClick(series.index)}
         />
       ))}

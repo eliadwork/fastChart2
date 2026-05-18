@@ -16,15 +16,14 @@ export const DEFAULT_SHAPE_STYLE: Pick<ChartLineStyle, 'color' | 'thickness' | '
 };
 
 export const DEFAULT_ZERO_LINE_COLOR = '#ffffff';
-/** Almost completely translucent – subtle tint only. */
-export const DEFAULT_LEGEND_BACKGROUND_COLOR = 'rgba(0,0,0,0.08)';
+export const DEFAULT_LEGEND_BACKGROUND_COLOR = '#000000';
 export const DEFAULT_TEXT_COLOR = '#ffffff';
 
 /** Opacity for chart background when using theme backgroundColor. */
 export const CHART_BACKGROUND_OPACITY_DEFAULT = 0.2;
 
 /** Opacity for legend background when using theme backgroundColor. */
-export const CHART_LEGEND_BACKGROUND_OPACITY = 0.08;
+export const CHART_LEGEND_BACKGROUND_OPACITY = 0.55;
 
 /** Fallback background when theme has no backgroundColor. */
 export const CHART_FALLBACK_BACKGROUND = '#1a1a1a';
