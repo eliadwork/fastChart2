@@ -1,4 +1,4 @@
-import type { ChartData, ChartDataSeries } from '../../../chart';
+import type { ChartData, ChartDataSeries } from '../../../library/chart';
 import type { ChartDataWorkerResponse } from '../chartDataContracts';
 
 const FALLBACK_SAMPLE_X = new Float64Array([0, 100_000, 200_000, 300_000, 400_000, 500_000]);

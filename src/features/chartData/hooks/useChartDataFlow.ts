@@ -1,4 +1,4 @@
-import type { ChartData } from '../../../chart';
+import type { ChartData } from '../../../library/chart';
 
 import { useCallback, useState } from 'react';
 

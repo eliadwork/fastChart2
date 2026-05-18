@@ -1,4 +1,4 @@
-import type { ChartIcon, ChartOptions, ChartShape } from '../../chart';
+import type { ChartIcon, ChartOptions, ChartShape } from '../../library/chart';
 
 const EMPTY_FAST_CHARTING_OPTIONS: ChartOptions = {};
 const EMPTY_FAST_CHARTING_SHAPES: ChartShape[] = [];

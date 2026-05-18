@@ -1,4 +1,4 @@
-import type { ChartData, ChartDataSeries } from '../../chart';
+import type { ChartData, ChartDataSeries } from '../../library/chart';
 import type { AddDemoLineInput, ChartDataResult, ChartDataWorkerResponse } from './chartDataContracts';
 import { resolveChartDataSourceMode } from './chartDataSourceMode';
 import {

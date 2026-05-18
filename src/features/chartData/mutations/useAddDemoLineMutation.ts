@@ -1,4 +1,4 @@
-import type { ChartData } from '../../../chart';
+import type { ChartData } from '../../../library/chart';
 import type { AddDemoLineInput } from '../chartDataContracts';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';

@@ -1,4 +1,4 @@
-import type { ChartData, ChartDataSeries } from '../../chart';
+import type { ChartData, ChartDataSeries } from '../../library/chart';
 
 export interface ChartDataWorkerLine {
   x: ArrayBuffer;

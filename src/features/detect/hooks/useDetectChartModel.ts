@@ -1,4 +1,4 @@
-import type { ChartData, ChartIcon, ChartOptions, ChartShape } from '../../../chart';
+import type { ChartData, ChartIcon, ChartOptions, ChartShape } from '../../../library/chart';
 
 import { useMemo } from 'react';
 

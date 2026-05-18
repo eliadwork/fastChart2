@@ -3,13 +3,13 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 
-import { DEFAULT_CHART_ICONS } from './chart/defaultsChartStyles';
-import { SciChartWrapper } from './chart/implementation/scichart/SciChartWrapper';
+import { DEFAULT_CHART_ICONS } from './library/chart/defaultsChartStyles';
+import { SciChartWrapper } from './library/chart/implementation/scichart/SciChartWrapper';
 import { Detect } from './features/detect/Detect';
 import { FastChartingPanel } from './features/fastCharting/FastChartingPanel';
 import { ChartComparison, ChartComparisonGrid, ChartPanel } from './styled/ChartStyled';
 import { useChartDataFlow } from './features/chartData/hooks/useChartDataFlow';
-import type { ChartShape } from './chart/types';
+import type { ChartShape } from './library/chart/types';
 
 const App = () => {
   const { chartData, canAddLine, addLine } = useChartDataFlow();

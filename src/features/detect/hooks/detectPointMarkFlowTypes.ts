@@ -4,7 +4,7 @@ import type {
   ChartIcon,
   ChartOptions,
   ChartShape,
-} from '../../../chart';
+} from '../../../library/chart';
 
 import type { DetectVisualConfig, DetectVisualIconOption } from '../detectVisualConfig';
 
