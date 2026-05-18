@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles';
 
 import { DEFAULT_CHART_ICONS } from './library/chart/defaultsChartStyles';
 import { SciChartWrapper } from './library/chart/implementation/scichart/SciChartWrapper';
-import { Detect } from './features/detect/Detect';
+import { Detect } from './library/detect/Detect';
 import { FastChartingPanel } from './features/fastCharting/FastChartingPanel';
 import { ChartComparison, ChartComparisonGrid, ChartPanel } from './styled/ChartStyled';
 import { useChartDataFlow } from './features/chartData/hooks/useChartDataFlow';

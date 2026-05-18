@@ -4,7 +4,7 @@ import {
   DETECT_TOOLTIP_HIDE_SHAPES_FOR_HIDDEN,
   DETECT_TOOLTIP_SHOW_SHAPES_FOR_HIDDEN,
 } from '../detectConstants';
-import { ChartToolbarButton } from '../../../library/chart/ChartToolbarButton';
+import { ChartToolbarButton } from '../../chart/ChartToolbarButton';
 
 export interface ShapesVisibilityToolbarButtonProps {
   textColor: string;

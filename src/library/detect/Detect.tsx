@@ -10,9 +10,9 @@ import {
   useDetectPointMarkFlow,
 } from './hooks/useDetectPointMarkFlow';
 import type { DetectVisualConfig } from './detectVisualConfig';
-import type { ChartData, ChartIcon, ChartOptions, ChartShape, ChartStyle } from '../../library/chart/types';
-import type { ChartImplementationProps } from '../../library/chart/implementation/implementationProps';
-import { Chart } from '../../library/chart/Chart';
+import type { ChartData, ChartIcon, ChartOptions, ChartShape, ChartStyle } from '../chart/types';
+import type { ChartImplementationProps } from '../chart/implementation/implementationProps';
+import { Chart } from '../chart/Chart';
 
 export interface DetectProps {
   chartId: string;
