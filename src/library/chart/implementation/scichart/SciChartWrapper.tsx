@@ -10,7 +10,7 @@ import { SciChartSurface } from 'scichart';
 import { SciChartReact } from 'scichart-react';
 
 import { SkeletonLoading } from '../../../skeletonLoader/SkeletonLoading';
-import { ChartWrapperBox } from '../../../../styled/ChartStyled';
+import { ChartWrapperBox } from '../../Chart.style';
 import { useSciChartRuntimeFlow } from './hooks/flow/useSciChartRuntimeFlow';
 import { useSciChartRuntimeSyncFlow } from './hooks/flow/useSciChartRuntimeSyncFlow';
 import { useSciChartOptionsModel } from './hooks/model/useSciChartOptionsModel';

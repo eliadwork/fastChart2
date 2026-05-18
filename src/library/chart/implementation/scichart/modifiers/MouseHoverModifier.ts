@@ -27,10 +27,6 @@ export class MouseHoverModifier extends ChartModifierBase2D {
     this.receiveHandledEvents = true;
   }
 
-  modifierMouseLeave(args: ModifierMouseArgs): void {
-    super.modifierMouseLeave(args);
-    this.onHover?.(new MouseEvent('mouseleave', { bubbles: true }));
-  }
 
   modifierMouseMove(args: ModifierMouseArgs): void {
     super.modifierMouseMove(args);

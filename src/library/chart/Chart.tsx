@@ -15,7 +15,7 @@ import {
   ChartPanelNote,
   ChartPanelTitle,
   ChartWrapperBox,
-} from '../../styled/ChartStyled';
+} from './Chart.style';
 import {
   CHART_TOOLTIP_DISABLE_ALL,
   CHART_TOOLTIP_ENABLE_ALL,
