@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import type { ChartDataLike } from '../utils/chartDataLookup';
-import { getNearestPointAtX } from '../utils/chartDataLookup';
+import type { ChartDataLike } from '../library/chart/utils/chartDataLookup';
+import { getNearestPointAtX } from '../library/chart/utils/chartDataLookup';
 
 /**
  * Hook that returns a lookup function to get Y at X for a given series.

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 export interface UseChartSeriesVisibilityOptions {
   /** Current number of series rendered by the chart. */
@@ -66,30 +66,27 @@ export const useChartSeriesVisibility = ({
     )
   );
 
-  useEffect(() => {
-    // If parent does not control visibility, keep local state as-is.
-    if (initialVisibility == null) {
-      return;
+  // Track previous prop values so we can detect changes during render.
+  // This is the React-recommended alternative to setState-in-effect for prop synchronization.
+  const [prevInitialVisibility, setPrevInitialVisibility] = useState<boolean[] | undefined>(
+    initialVisibility
+  );
+  const [prevInitialSeriesCount, setPrevInitialSeriesCount] = useState(initialSeriesCount);
+
+  if (
+    initialVisibility != null &&
+    (initialVisibility !== prevInitialVisibility || initialSeriesCount !== prevInitialSeriesCount)
+  ) {
+    setPrevInitialVisibility(initialVisibility);
+    setPrevInitialSeriesCount(initialSeriesCount);
+
+    const normalizedNew = normalizeSeriesVisibility(initialVisibility, initialSeriesCount);
+    const normalizedCurrent = normalizeSeriesVisibility(seriesVisibilityState, initialSeriesCount);
+
+    if (!sameSeriesVisibility(normalizedCurrent, normalizedNew)) {
+      setSeriesVisibilityState(normalizedNew);
     }
-
-    // Normalize incoming visibility to avoid length mismatch with current data.
-    const normalizedInitialVisibility = normalizeSeriesVisibility(
-      initialVisibility,
-      initialSeriesCount
-    );
-
-    setSeriesVisibilityState((previousVisibility) => {
-      // `previousVisibility` is the latest committed state (safe against stale closures).
-      const normalizedPreviousVisibility = normalizeSeriesVisibility(
-        previousVisibility,
-        initialSeriesCount
-      );
-      // Update only when values actually changed to avoid unnecessary renders.
-      return sameSeriesVisibility(normalizedPreviousVisibility, normalizedInitialVisibility)
-        ? previousVisibility
-        : normalizedInitialVisibility;
-    });
-  }, [initialVisibility, initialSeriesCount]);
+  }
 
   // Expose normalized visibility so downstream code always gets array length === series count.
   const seriesVisibility = useMemo(

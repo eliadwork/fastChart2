@@ -11,7 +11,8 @@
     "preview": "vite preview",
     "copy:wasm": "mkdir -p public && cp node_modules/scichart/_wasm/scichart2d.wasm node_modules/scichart/_wasm/scichart2d-nosimd.wasm public/ 2>/dev/null || true",
     "generate:data": "node scripts/generateChartData.js",
-    "postinstall": "patch-package && npm run copy:wasm"
+    "postinstall": "patch-package && npm run copy:wasm",
+    "docker-run": "docker build -t chartcompare . && docker run -p 8080:80 chartcompare"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
