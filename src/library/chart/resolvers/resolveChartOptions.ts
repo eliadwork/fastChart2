@@ -207,6 +207,8 @@ const resolveChartDefinitionData = (
     y: line.y,
     name: line.name,
     lineGroupKey: line.lineGroupKey,
+    yAxisId: line.yAxisId,
+    xAxisId: line.xAxisId,
     style: resolveChartDefinitionSeriesStyle(line.style, defaultLineStyle),
   }));
 
@@ -361,6 +363,8 @@ export const resolveChartDefinition = ({
       resampling: options.resampling,
       events: options.events,
       clipZoomToData: options.clipZoomToData,
+      yAxes: options.yAxes,
+      xAxes: options.xAxes,
     },
     styles: {
       chartOnly: style.chartOnly,

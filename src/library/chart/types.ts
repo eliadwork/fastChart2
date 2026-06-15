@@ -37,6 +37,15 @@ export interface ChartStyle {
   chartOnly: boolean;
 }
 
+export interface ChartAxisConfig {
+  id: string;
+  name?: string;
+  range?: [number, number];
+  position?: 'left' | 'right' | 'top' | 'bottom';
+  /** When true, this axis gets its own independent surface/viewport in a stacked layout. */
+  stacked?: boolean;
+}
+
 /** One line/series in the chart. Each line has its own x, y, name, optional group key, and style. */
 export interface ChartDataSeries {
   x: number[] | ArrayLike<number>;
@@ -44,6 +53,10 @@ export interface ChartDataSeries {
   name: string;
   lineGroupKey?: string;
   style: ChartLineStyle;
+  /** Binds this series to a specific Y-axis by id. Defaults to the first Y-axis. */
+  yAxisId?: string;
+  /** Binds this series to a specific X-axis by id. Defaults to the first X-axis. */
+  xAxisId?: string;
 }
 
 /** Chart data: array of lines, each with its own x, y, name, lineGroupKey, and style. */
@@ -187,4 +200,6 @@ export interface ChartOptions {
   seriesGroupKeys?: (string | undefined)[];
   events?: ChartOptionsEvents;
   clipZoomToData?: boolean;
+  yAxes?: ChartAxisConfig[];
+  xAxes?: ChartAxisConfig[];
 }

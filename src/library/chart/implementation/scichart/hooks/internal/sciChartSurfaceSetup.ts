@@ -4,6 +4,8 @@ export interface CreateSciChartSurfaceOptions {
   rootElement: HTMLDivElement | string;
   backgroundColor: string;
   textColor: string;
+  /** When false, X-axis tick labels are hidden (used for non-bottom panels in stacked mode). Default: true. */
+  xAxisDrawLabels?: boolean;
 }
 
 const resolveRootElement = (rootElement: HTMLDivElement | string) => {
@@ -16,6 +18,7 @@ export const createSciChartSurfaceWithAxes = async ({
   rootElement,
   backgroundColor,
   textColor,
+  xAxisDrawLabels = true,
 }: CreateSciChartSurfaceOptions) => {
   const element = resolveRootElement(rootElement);
   if (!element) {
@@ -26,9 +29,12 @@ export const createSciChartSurfaceWithAxes = async ({
     background: backgroundColor,
   });
 
-  const axisOptions = { labelStyle: { color: textColor } };
-  const xAxis = new NumericAxis(wasmContext, axisOptions);
-  const yAxis = new NumericAxis(wasmContext, axisOptions);
+  const labelStyle = { color: textColor };
+  const xAxis = new NumericAxis(wasmContext, {
+    labelStyle,
+    drawLabels: xAxisDrawLabels,
+  });
+  const yAxis = new NumericAxis(wasmContext, { labelStyle });
   sciChartSurface.xAxes.add(xAxis);
   sciChartSurface.yAxes.add(yAxis);
 

@@ -7,7 +7,7 @@ import { SciChartWrapper } from './library/chart/implementation/scichart';
 import { FastChartingPanel } from './features/fastCharting/FastChartingPanel';
 import { ChartComparison, ChartComparisonGrid, ChartPanel } from './styled/ChartStyled';
 import { useChartDataFlow } from './features/chartData/hooks/useChartDataFlow';
-import type { ChartShape } from './library';
+import type { ChartAxisConfig, ChartShape } from './library';
 
 const App = () => {
   const { chartData, canAddLine, addLine } = useChartDataFlow();
@@ -35,6 +35,7 @@ const App = () => {
               options={{
                 note: 'this is the chart example',
                 resampling: { enable: true, precision: 1 },
+                yAxes: STACKED_Y_AXES,
               }}
               icons={DEFAULT_CHART_ICONS}
               ImplementationComponent={SciChartWrapper}
@@ -48,6 +49,7 @@ const App = () => {
               shapes={exampleShapes}
               options={{
                 note: 'this is the chart example',
+                yAxes: STACKED_Y_AXES,
               }}
               ImplementationComponent={SciChartWrapper}
             />
@@ -61,6 +63,7 @@ const App = () => {
           options={{
             note: '20% panel',
             clipZoomToData: true,
+            yAxes: STACKED_Y_AXES,
           }}
           icons={DEFAULT_CHART_ICONS}
           ImplementationComponent={SciChartWrapper}
@@ -79,6 +82,11 @@ const DetectStyled = styled(Detect)(() => ({
   height: '100%',
   minHeight: 0,
 }));
+
+const STACKED_Y_AXES: ChartAxisConfig[] = [
+  { id: 'default', stacked: true },
+  { id: 'secondary', name: 'Secondary', stacked: true },
+];
 
 const exampleShapes: ChartShape[] = [
   {

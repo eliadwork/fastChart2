@@ -18,10 +18,13 @@ import { SCI_CHART_STRETCH_SENSITIVITY } from '../../sciChartWrapperConstants';
 
 export interface CreateSciChartModifiersOptions {
   interactionOptions: Pick<ResolvedSciChartOptions, 'features' | 'events'>;
+  /** When set, pan/zoom/wheel/stretch/extents modifiers share this group for cross-surface sync. */
+  modifierGroupId?: string;
 }
 
 export const createSciChartModifiers = ({
   interactionOptions,
+  modifierGroupId,
 }: CreateSciChartModifiersOptions): InstanceType<
   typeof import('scichart').ChartModifierBase2D
 >[] => {
@@ -50,6 +53,7 @@ export const createSciChartModifiers = ({
       new AxisStretchModifier({
         executeCondition: toModifierExecuteCondition(stretchConfig.trigger),
         sensitivity: SCI_CHART_STRETCH_SENSITIVITY,
+        ...(modifierGroupId ? { modifierGroup: modifierGroupId } : {}),
       })
     );
   }
@@ -58,6 +62,7 @@ export const createSciChartModifiers = ({
     modifiers.push(
       new RubberBandXyZoomModifier({
         executeCondition: toModifierExecuteCondition(zoomConfig.trigger),
+        // No modifierGroup: rubber-band X sync is handled via visibleRangeChanged subscription.
       })
     );
   }
@@ -66,11 +71,15 @@ export const createSciChartModifiers = ({
     modifiers.push(
       new ZoomPanModifier({
         executeCondition: toModifierExecuteCondition(panConfig.trigger),
+        ...(modifierGroupId ? { modifierGroup: modifierGroupId } : {}),
       })
     );
   }
 
-  modifiers.push(new MouseWheelZoomModifier(), new ZoomExtentsModifier());
+  modifiers.push(
+    new MouseWheelZoomModifier(modifierGroupId ? { modifierGroup: modifierGroupId } : undefined),
+    new ZoomExtentsModifier(modifierGroupId ? { modifierGroup: modifierGroupId } : undefined),
+  );
 
   if (interactionOptions.events?.hover) {
     modifiers.push(new MouseHoverModifier({ onHover: interactionOptions.events.hover }));

@@ -1,5 +1,6 @@
 import type { EResamplingMode } from 'scichart';
 
+import type { ChartAxisConfig } from '../../types';
 import type {
   ChartDefinition,
   ChartDefinitionBoxShape,
@@ -32,6 +33,8 @@ import type {
   ResolvedChartDefinitionShape,
   ResolvedChartDefinitionStyles,
 } from '../../chartImplementationContracts';
+
+export type SciChartAxisConfig = ChartAxisConfig;
 
 export type scichartFullDefinition = ChartDefinition;
 

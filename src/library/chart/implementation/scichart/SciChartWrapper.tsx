@@ -14,6 +14,7 @@ import { ChartWrapperBox } from '../../Chart.style';
 import { useSciChartRuntimeFlow } from './hooks/flow/useSciChartRuntimeFlow';
 import { useSciChartRuntimeSyncFlow } from './hooks/flow/useSciChartRuntimeSyncFlow';
 import { useSciChartOptionsModel } from './hooks/model/useSciChartOptionsModel';
+import { SciChartStackedSurfaces } from './SciChartStackedSurfaces';
 import { SCI_CHART_WASM_NO_SIMD_URL, SCI_CHART_WASM_URL } from './sciChartWrapperConstants';
 import { SciChartContainer, SciChartSurfaceStyle } from './SciChartWrapperStyled';
 
@@ -37,6 +38,9 @@ export const SciChartWrapper = ({
     definition,
   });
 
+  const stackedYAxes = sciChartDefinition.options.yAxes?.filter((a) => a.stacked) ?? [];
+  const isStacked = stackedYAxes.length > 1;
+
   const { initChart, dataBounds } = useSciChartRuntimeFlow({
     definition: sciChartDefinition,
   });
@@ -45,6 +49,18 @@ export const SciChartWrapper = ({
     return (
       <ChartWrapperBox style={containerStyle}>
         <SkeletonLoading />
+      </ChartWrapperBox>
+    );
+  }
+
+  if (isStacked) {
+    return (
+      <ChartWrapperBox style={containerStyle}>
+        <SciChartStackedSurfaces
+          definition={sciChartDefinition}
+          stackedYAxes={stackedYAxes}
+          overlaySlot={!sciChartDefinition.styles.chartOnly ? overlaySlot : undefined}
+        />
       </ChartWrapperBox>
     );
   }

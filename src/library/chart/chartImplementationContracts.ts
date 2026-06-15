@@ -4,6 +4,7 @@
  */
 
 import type {
+  ChartAxisConfig,
   ChartDataSeries,
   ChartBoxShape,
   ChartLineShape,
@@ -49,6 +50,8 @@ export interface ChartDefinitionDataSeries {
   name: string;
   lineGroupKey?: string;
   style?: ChartDefinitionLineStyle;
+  yAxisId?: string;
+  xAxisId?: string;
 }
 
 export interface ChartDefinitionData {
@@ -89,6 +92,8 @@ export interface ChartDefinitionOptions {
   resampling?: ChartDefinitionResampling;
   events?: ChartDefinitionEvents;
   clipZoomToData?: boolean;
+  yAxes?: ChartAxisConfig[];
+  xAxes?: ChartAxisConfig[];
 }
 
 export interface ChartDefinitionDefaultStyles {
@@ -127,9 +132,9 @@ export type ResolvedChartDefinitionLineStyle = Required<
 };
 
 export type ResolvedChartDefinitionDataSeries = Required<
-  Omit<ChartDefinitionDataSeries, 'lineGroupKey' | 'style'>
+  Omit<ChartDefinitionDataSeries, 'lineGroupKey' | 'style' | 'yAxisId' | 'xAxisId'>
 > &
-  Pick<ChartDefinitionDataSeries, 'lineGroupKey'> & {
+  Pick<ChartDefinitionDataSeries, 'lineGroupKey' | 'yAxisId' | 'xAxisId'> & {
     style: ResolvedChartDefinitionLineStyle;
   };
 
@@ -193,11 +198,13 @@ export interface ResolvedChartDefinitionEvents {
 }
 
 export type ResolvedChartDefinitionOptions = Required<
-  Omit<ChartDefinitionOptions, 'features' | 'resampling' | 'events'>
+  Omit<ChartDefinitionOptions, 'features' | 'resampling' | 'events' | 'yAxes' | 'xAxes'>
 > & {
   features: ResolvedChartDefinitionFeatures;
   resampling: ResolvedChartDefinitionResampling;
   events?: ResolvedChartDefinitionEvents;
+  yAxes?: ChartAxisConfig[];
+  xAxes?: ChartAxisConfig[];
 };
 
 export type ResolvedChartDefinitionDefaultStyles = Required<
