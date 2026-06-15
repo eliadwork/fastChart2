@@ -139,7 +139,7 @@ export const SciChartStackedSurfaces = ({
         const xAxis = sciChartSurface.xAxes.asArray()[0];
         if (xAxis) {
           xAxis.visibleRangeChanged.subscribe((args) => {
-            if (xSyncPropagating.current || !args.visibleRange) return;
+            if (!args || xSyncPropagating.current || !args.visibleRange) return;
             xSyncPropagating.current = true;
             const range = new NumberRange(args.visibleRange.min, args.visibleRange.max);
             for (const other of surfacesRef.current) {

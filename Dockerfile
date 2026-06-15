@@ -4,6 +4,7 @@ FROM node:20.17-alpine AS builder
 WORKDIR /app
 
 COPY package.json package-lock.json ./
+COPY patches ./patches
 RUN npm ci
 
 COPY . .
