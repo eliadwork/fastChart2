@@ -6,7 +6,6 @@ import type {
   ResolvedSciChartDataSeries,
   ResolvedSciChartResamplingOption,
 } from '../../scichartOptions';
-
 interface SciChartSeriesLike {
   dataSeries?: { delete?: () => void };
   delete?: () => void;
