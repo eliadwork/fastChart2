@@ -1,5 +1,6 @@
 import type { ResolvedSciChartDefinition, SciChartDataBounds } from '../../scichartOptions';
 
+import { SECOND_Y_AXIS_ID } from '../../sciChartWrapperConstants';
 import { useSciChartSurfaceContext } from '../context/useSciChartSurfaceContext';
 import { useDataSeriesSync } from '../sync/useDataSeriesSync';
 import { useIconsSync } from '../sync/useIconsSync';
@@ -28,6 +29,7 @@ export const useSciChartRuntimeSyncFlow = ({
     clipZoomToData: definition.options.clipZoomToData,
     seriesConfig: definition.options.resampling,
     seriesVisibility: definition.data.seriesVisibility,
+    secondYAxisId: SECOND_Y_AXIS_ID,
   });
   useIconsSync({
     surface: sciChartSurface,

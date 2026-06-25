@@ -31,12 +31,14 @@ export interface RebuildRenderableSeriesOptions {
   surface: SciChartSurface;
   data: ResolvedSciChartData;
   seriesConfig: ResolvedSciChartResamplingOption;
+  secondYAxisId?: string;
 }
 
 export const rebuildRenderableSeries = ({
   surface,
   data,
   seriesConfig,
+  secondYAxisId,
 }: RebuildRenderableSeriesOptions) => {
   clearRenderableSeries(surface);
 
@@ -62,5 +64,29 @@ export const rebuildRenderableSeries = ({
     });
 
     surface.renderableSeries.add(renderableSeries);
+  }
+
+  if (secondYAxisId && data.series.length > 0) {
+    const mirrorLine = data.series[0];
+    const mirrorDataSeries = new XyDataSeries(wasmContext, {
+      xValues: mirrorLine.x,
+      yValues: mirrorLine.y,
+      isSorted: true,
+      containsNaN: false,
+      dataSeriesName: mirrorLine.name,
+    });
+    surface.renderableSeries.add(
+      new FastLineRenderableSeries(wasmContext, {
+        dataSeries: mirrorDataSeries,
+        stroke: toStrokeColor(mirrorLine),
+        strokeThickness: toStrokeThickness(mirrorLine),
+        strokeDashArray: dashToStrokeArray(mirrorLine.style.dash),
+        resamplingMode: seriesConfig.resamplingMode,
+        resamplingPrecision: seriesConfig.resamplingPrecision,
+        yAxisId: secondYAxisId,
+        clipToYRange: true,
+        isVisible: data.seriesVisibility[0] ?? true,
+      })
+    );
   }
 };

@@ -6,6 +6,7 @@ import { applyVisibleRangeLimits } from '../internal/sciChartRangeLimits';
 import { rebuildRenderableSeries } from '../internal/sciChartSeriesRuntime';
 import { createSciChartSurfaceWithAxes } from '../internal/sciChartSurfaceSetup';
 import { addZeroLineAnnotations } from '../internal/sciChartZeroLines';
+import { SECOND_Y_AXIS_ID } from '../../sciChartWrapperConstants';
 
 export interface UseSciChartInitChartFlowOptions {
   definition: ResolvedSciChartDefinition;
@@ -30,6 +31,7 @@ export const useSciChartInitChartFlow = ({
         surface: sciChartSurface,
         data: definition.data,
         seriesConfig: definition.options.resampling,
+        secondYAxisId: SECOND_Y_AXIS_ID,
       });
 
       addZeroLineAnnotations(sciChartSurface, definition.styles.zeroLineColor);

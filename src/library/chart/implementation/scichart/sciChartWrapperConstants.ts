@@ -24,3 +24,8 @@ export const SCI_CHART_STRETCH_SENSITIVITY = 0.5
 
 /** Box label font size. */
 export const SCI_CHART_BOX_LABEL_FONT_SIZE = 12
+
+/** Stacked Y axis IDs and heights. */
+export const SECOND_Y_AXIS_ID = 'secondYAxis'
+export const MAIN_Y_AXIS_STACKED_LENGTH = '80%'
+export const SECOND_Y_AXIS_STACKED_LENGTH = '20%'

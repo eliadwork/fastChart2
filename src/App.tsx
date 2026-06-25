@@ -40,7 +40,7 @@ const App = () => {
               ImplementationComponent={SciChartWrapper}
             />
           </ChartPanel>
-          <ChartPanel>
+          {/* <ChartPanel>
             <DetectStyled
               chartId="no-loss"
               title="No-loss (every point)"
@@ -51,9 +51,9 @@ const App = () => {
               }}
               ImplementationComponent={SciChartWrapper}
             />
-          </ChartPanel>
+          </ChartPanel> */}
         </ChartComparisonGrid>
-        <FastChartingPanel
+        {/* <FastChartingPanel
           chartId="fast"
           title="Fast chart"
           data={chartData}
@@ -64,7 +64,7 @@ const App = () => {
           }}
           icons={DEFAULT_CHART_ICONS}
           ImplementationComponent={SciChartWrapper}
-        />
+        /> */}
       </Box>
     </ChartComparison>
   );

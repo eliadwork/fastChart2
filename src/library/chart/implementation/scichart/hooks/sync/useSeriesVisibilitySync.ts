@@ -8,9 +8,17 @@ export function useSeriesVisibilitySync(
   useEffect(() => {
     if (!surface) return;
     const series = surface.renderableSeries.asArray();
-    for (let index = 0; index < series.length; index++) {
+    const mainCount = seriesVisibility.length;
+
+    for (let index = 0; index < mainCount && index < series.length; index++) {
       series[index].isVisible = seriesVisibility[index];
     }
+
+    // Mirror series (index mainCount) follows series[0] visibility.
+    if (series.length > mainCount) {
+      series[mainCount].isVisible = seriesVisibility[0] ?? true;
+    }
+
     surface.invalidateElement();
   }, [surface, seriesVisibility]);
 }

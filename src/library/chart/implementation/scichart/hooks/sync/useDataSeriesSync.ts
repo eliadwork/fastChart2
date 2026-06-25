@@ -16,6 +16,7 @@ export interface UseDataSeriesSyncOptions {
   clipZoomToData: boolean;
   seriesConfig: ResolvedSciChartResamplingOption;
   seriesVisibility: boolean[];
+  secondYAxisId?: string;
 }
 
 export const useDataSeriesSync = ({
@@ -25,6 +26,7 @@ export const useDataSeriesSync = ({
   clipZoomToData,
   seriesConfig,
   seriesVisibility,
+  secondYAxisId,
 }: UseDataSeriesSyncOptions) => {
   useEffect(() => {
     if (!surface) return;
@@ -42,9 +44,10 @@ export const useDataSeriesSync = ({
       surface,
       data,
       seriesConfig,
+      secondYAxisId,
     });
 
     applyVisibleRangeLimits(surface, dataBounds, clipZoomToData);
     surface.invalidateElement();
-  }, [surface, data, dataBounds, clipZoomToData, seriesConfig, seriesVisibility]);
+  }, [surface, data, dataBounds, clipZoomToData, seriesConfig, seriesVisibility, secondYAxisId]);
 };
