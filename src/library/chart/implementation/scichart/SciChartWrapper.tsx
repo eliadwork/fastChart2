@@ -231,7 +231,7 @@ export const SciChartWrapper = ({
     <ChartWrapperBox style={containerStyle}>
       <SciChartContainer sx={{ display: 'flex', flexDirection: 'column' }}>
         <SciChartReact
-          style={SciChartSurfaceStyle}
+          style={{ ...SciChartSurfaceStyle, flex: 4 }}
           fallback={<SkeletonLoading />}
           initChart={wrappedInitChart}
         >
@@ -239,7 +239,7 @@ export const SciChartWrapper = ({
           {!sciChartDefinition.styles.chartOnly && overlaySlot}
         </SciChartReact>
         <SciChartReact
-          style={SciChartSurfaceStyle}
+          style={{ ...SciChartSurfaceStyle, flex: 1 }}
           fallback={<SkeletonLoading />}
           initChart={wrappedSecondPanelInitChart}
         >
