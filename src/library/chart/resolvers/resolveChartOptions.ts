@@ -2,7 +2,7 @@ import {
   CHART_RESAMPLING_PRECISION_DEFAULT,
   CHART_RESAMPLING_PRECISION_OFF,
 } from '../chartConstants';
-import { DEFAULT_SHAPE_STYLE } from '../defaultsChartStyles';
+import { CHART_DEFAULT_STROKE_THICKNESS, DEFAULT_SHAPE_STYLE } from '../defaultsChartStyles';
 import type {
   ChartImplementationOptions,
   ChartImplementationOptionsWithHandlers,
@@ -181,7 +181,7 @@ const resolveChartIcons = (
 const resolveChartDefaultLineStyle = (style: ChartStyle): ResolvedChartDefinitionLineStyle => ({
   bindable: true,
   color: style.defaults?.seriesColors?.[0] ?? DEFAULT_SHAPE_STYLE.color ?? '#ff0000',
-  thickness: style.defaults?.strokeThickness ?? 0,
+  thickness: style.defaults?.strokeThickness ?? CHART_DEFAULT_STROKE_THICKNESS,
   dash: resolveDashConfig(),
 });
 
@@ -229,7 +229,7 @@ export const resolveChartData = (
   }
 
   const seriesColors = chartStyle.defaults?.seriesColors ?? [];
-  const defaultStrokeThickness = chartStyle.defaults?.strokeThickness ?? 0;
+  const defaultStrokeThickness = chartStyle.defaults?.strokeThickness ?? CHART_DEFAULT_STROKE_THICKNESS;
   const fallbackLineColor = DEFAULT_SHAPE_STYLE.color;
 
   return chartData.map((line, index) => {
