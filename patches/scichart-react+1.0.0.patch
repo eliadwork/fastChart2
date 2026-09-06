@@ -1,0 +1,31 @@
+diff --git a/node_modules/scichart-react/SciChartMemoryDebugWrapper.d.ts b/node_modules/scichart-react/SciChartMemoryDebugWrapper.d.ts
+index 9cb23cb..ad6b0c2 100644
+--- a/node_modules/scichart-react/SciChartMemoryDebugWrapper.d.ts
++++ b/node_modules/scichart-react/SciChartMemoryDebugWrapper.d.ts
+@@ -2,7 +2,7 @@ import { PropsWithChildren, JSX } from "react";
+ /**
+  * SciChartMemoryDebugWrapper is used to help checking memory leaks related to SciChart.
+  * Rendering the component enables Memory Debug Mode and adds extra UI elements to allow easily mount/unmount the child components
+- * @remarks Find more info at [Memory Leak Debugging docs](https://www.scichart.com/documentation/js/current/MemoryLeakDebugging.html)
++ * @remarks Find more info at [Memory Leak Debugging docs](https://www.newchart.com/documentation/js/current/MemoryLeakDebugging.html)
+  */
+ export declare function SciChartMemoryDebugWrapper(props: PropsWithChildren<any>): JSX.Element;
+ //# sourceMappingURL=SciChartMemoryDebugWrapper.d.ts.map
+\ No newline at end of file
+diff --git a/node_modules/scichart-react/package.json b/node_modules/scichart-react/package.json
+index 1927884..5e563fb 100644
+--- a/node_modules/scichart-react/package.json
++++ b/node_modules/scichart-react/package.json
+@@ -2,11 +2,10 @@
+   "name": "scichart-react",
+   "version": "1.0.0",
+   "description": "React wrapper for SciChart JS",
+-  "homepage": "https://www.scichart.com",
++  "homepage": "https://www.newchart.com",
+   "main": "index.js",
+   "types": "index.d.ts",
+   "scripts": {},
+-  "author": "SciChart Ltd",
+   "license": "MIT",
+   "keywords": [
+     "Chart",
