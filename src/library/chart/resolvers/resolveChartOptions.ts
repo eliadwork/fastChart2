@@ -33,6 +33,7 @@ import type {
 import { resolveChartDataSeriesStyle } from './resolveChartDataSeriesStyle';
 
 const EMPTY_CHART_DATA: ChartData = [];
+const DEFAULT_AXIS_HEIGHT_WEIGHT = 1;
 const EMPTY_CHART_OPTIONS: ChartOptions = {};
 const EMPTY_CHART_SHAPES: ResolvedChartShape[] = [];
 const EMPTY_CHART_ICONS: ChartIcon[] = [];
@@ -363,7 +364,15 @@ export const resolveChartDefinition = ({
       resampling: options.resampling,
       events: options.events,
       clipZoomToData: options.clipZoomToData,
-      yAxes: options.yAxes,
+      yAxes: options.yAxes?.map((axis) => ({
+        ...axis,
+        heightWeight:
+          axis.heightWeight !== undefined &&
+          Number.isFinite(axis.heightWeight) &&
+          axis.heightWeight > 0
+            ? axis.heightWeight
+            : DEFAULT_AXIS_HEIGHT_WEIGHT,
+      })),
       xAxes: options.xAxes,
     },
     styles: {

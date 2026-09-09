@@ -10,16 +10,16 @@ type HoverEvent = MouseEvent & Partial<ChartHoverPayload>;
 type CursorState = {
   /** Data-space coords — units of the chart axes. Used for interpolation and display. */
   data: { x: number; y: number };
-  /** Pixel coords relative to the canvas top-left. Used for tooltip positioning. */
-  canvas: { x: number; y: number };
+  /** Viewport coordinates in CSS pixels, used for tooltip positioning. */
+  client: { x: number; y: number };
 };
 
 const formatValue = (value: number): string =>
   parseFloat(value.toPrecision(4)).toString();
 
 export interface CursorTooltipData {
-  canvasX: number;
-  canvasY: number;
+  clientX: number;
+  clientY: number;
   formattedX: string;
   formattedY: string;
 }
@@ -34,7 +34,7 @@ export const useRolloverLegendData = (data: ChartData) => {
     } else {
       setCursor({
         data: e.dataPoint,
-        canvas: e.canvasPoint ?? { x: 0, y: 0 },
+        client: { x: event.clientX, y: event.clientY },
       });
     }
   }, []);
@@ -63,8 +63,8 @@ export const useRolloverLegendData = (data: ChartData) => {
   const cursorTooltipData = useMemo<CursorTooltipData | null>(() => {
     if (cursor === null) return null;
     return {
-      canvasX: cursor.canvas.x,
-      canvasY: cursor.canvas.y,
+      clientX: cursor.client.x,
+      clientY: cursor.client.y,
       formattedX: formatValue(cursor.data.x),
       formattedY: formatValue(cursor.data.y),
     };

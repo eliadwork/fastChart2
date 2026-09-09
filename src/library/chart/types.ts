@@ -44,6 +44,8 @@ export interface ChartAxisConfig {
   position?: 'left' | 'right' | 'top' | 'bottom';
   /** When true, this axis gets its own independent surface/viewport in a stacked layout. */
   stacked?: boolean;
+  /** Relative panel height in a stacked layout. Positive values; defaults to 1. */
+  heightWeight?: number;
 }
 
 /** One line/series in the chart. Each line has its own x, y, name, optional group key, and style. */

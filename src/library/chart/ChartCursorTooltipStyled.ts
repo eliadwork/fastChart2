@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 
 export const ChartCursorTooltipRoot = styled('div')(({ theme }) => ({
-  position: 'absolute',
+  position: 'fixed',
   pointerEvents: 'none',
   background: theme.palette.background.paper,
   color: theme.palette.text.primary,

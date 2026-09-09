@@ -225,7 +225,7 @@ export const SciChartStackedSurfaces = ({
           ref={(el) => {
             divRefs.current[i] = el;
           }}
-          style={{ flex: 1, minHeight: 0, position: 'relative' }}
+          style={{ flex: axis.heightWeight, minHeight: 0, position: 'relative' }}
         />
       ))}
 

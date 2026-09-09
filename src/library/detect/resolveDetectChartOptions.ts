@@ -1,7 +1,6 @@
 import type { ChartOptions } from '../chart';
 
 import { DETECT_HOW_TO_USE_ADDITIONAL } from './detectConstants';
-import type { DetectHoverEvent } from './hooks/detectPointMarkFlowTypes';
 
 export interface ResolveDetectChartOptionsParams {
   options: ChartOptions;
@@ -10,7 +9,9 @@ export interface ResolveDetectChartOptionsParams {
 }
 
 const detectHoverLogger = (event: MouseEvent) => {
-  console.log('detect hover x:', (event as DetectHoverEvent).chartXValue);
+  if ('dataPoint' in event) {
+    console.log('detect hover location:', event.dataPoint);
+  }
 };
 
 export const resolveDetectChartOptions = ({
@@ -18,13 +19,18 @@ export const resolveDetectChartOptions = ({
   hasData,
   onMiddleClick,
 }: ResolveDetectChartOptionsParams): ChartOptions => {
+  const onHover = (event: MouseEvent) => {
+    detectHoverLogger(event);
+    options.events?.onhover?.(event);
+  };
+
   if (!hasData) {
     return {
       ...options,
       howToUseAdditional: options.howToUseAdditional ?? DETECT_HOW_TO_USE_ADDITIONAL,
       events: {
         ...options.events,
-        onhover: detectHoverLogger,
+        onhover: onHover,
       },
     };
   }
@@ -35,7 +41,7 @@ export const resolveDetectChartOptions = ({
     events: {
       ...options.events,
       onmiddleclick: onMiddleClick,
-      onhover: detectHoverLogger,
+      onhover: onHover,
     },
   };
 };

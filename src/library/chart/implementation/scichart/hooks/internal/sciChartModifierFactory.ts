@@ -18,7 +18,7 @@ import { SCI_CHART_STRETCH_SENSITIVITY } from '../../sciChartWrapperConstants';
 
 export interface CreateSciChartModifiersOptions {
   interactionOptions: Pick<ResolvedSciChartOptions, 'features' | 'events'>;
-  /** When set, pan/zoom/wheel/stretch/extents modifiers share this group for cross-surface sync. */
+  /** When set, navigation and rollover modifiers share this group for cross-surface sync. */
   modifierGroupId?: string;
 }
 
@@ -90,7 +90,8 @@ export const createSciChartModifiers = ({
 
     modifiers.push(
       new RolloverModifier({
-        showTooltip:false,
+        modifierGroup: modifierGroupId,
+        showTooltip: false,
         rolloverLineStroke: rolloverConfig.color,
         rolloverLineStrokeDashArray: rolloverDash == null ? [] : rolloverDash,
       })

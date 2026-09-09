@@ -1,5 +1,6 @@
 import {
   ChartModifierBase2D,
+  EAutoRange,
   EChart2DModifierType,
   ModifierMouseArgs,
   Point,
@@ -68,6 +69,8 @@ export class AxisStretchModifier extends ChartModifierBase2D {
     }
     if (Math.abs(verticalFraction) > 1e-6) {
       this.getIncludedYAxis().forEach((axis) => {
+        // Continuous auto-ranging would overwrite the range set by this drag.
+        axis.autoRange = EAutoRange.Never;
         this.growBy(mousePoint, axis, verticalFraction);
       });
     }

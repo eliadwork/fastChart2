@@ -1,5 +1,6 @@
 import {
   ChartModifierBase2D,
+  DpiHelper,
   EChart2DModifierType,
   ModifierMouseArgs,
   translateFromCanvasToSeriesViewRect,
@@ -46,8 +47,8 @@ export class MouseHoverModifier extends ChartModifierBase2D {
     const yCoordCalc = yAxis?.getCurrentCoordinateCalculator();
 
     const rect = this.parentSurface.domCanvas2D?.getBoundingClientRect();
-    const clientX = rect ? rect.left + args.mousePoint.x : args.mousePoint.x;
-    const clientY = rect ? rect.top + args.mousePoint.y : args.mousePoint.y;
+    const clientX = args.nativeEvent?.clientX ?? (rect?.left ?? 0) + args.mousePoint.x / DpiHelper.PIXEL_RATIO;
+    const clientY = args.nativeEvent?.clientY ?? (rect?.top ?? 0) + args.mousePoint.y / DpiHelper.PIXEL_RATIO;
 
     const payload: ChartHoverPayload = {
       dataPoint: {

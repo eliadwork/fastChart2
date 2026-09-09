@@ -1,3 +1,4 @@
+import { useCallback, useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -11,6 +12,17 @@ import type { ChartAxisConfig, ChartShape } from './library';
 
 const App = () => {
   const { chartData, canAddLine, addLine } = useChartDataFlow();
+  const [hoverLocation, setHoverLocation] = useState<{ x: number; y: number } | null>(null);
+  const handleHover = useCallback((event: MouseEvent) => {
+    if (!('dataPoint' in event)) return;
+    const point = event.dataPoint;
+    if (
+      typeof point !== 'object' || point === null ||
+      !('x' in point) || typeof point.x !== 'number' ||
+      !('y' in point) || typeof point.y !== 'number'
+    ) return;
+    setHoverLocation({ x: point.x, y: point.y });
+  }, []);
 
   return (
     <ChartComparison>
@@ -23,6 +35,11 @@ const App = () => {
         >
           Add Line
         </Button>
+        <Box component="span">
+          {hoverLocation
+            ? `Hover: x ${hoverLocation.x.toFixed(2)}, y ${hoverLocation.y.toFixed(2)}`
+            : 'Hover over a chart to see its coordinates'}
+        </Box>
       </Box>
       <Box sx={{ display: 'flex', flex: 1, minHeight: 0, minWidth: 0 }}>
         <ChartComparisonGrid sx={{ flex: 1, minWidth: 0 }}>
@@ -34,6 +51,7 @@ const App = () => {
               shapes={exampleShapes}
               options={{
                 note: 'this is the chart example',
+                events: { onhover: handleHover },
                 resampling: { enable: true, precision: 1 },
                 yAxes: STACKED_Y_AXES,
               }}
@@ -49,6 +67,7 @@ const App = () => {
               shapes={exampleShapes}
               options={{
                 note: 'this is the chart example',
+                events: { onhover: handleHover },
                 yAxes: STACKED_Y_AXES,
               }}
               ImplementationComponent={SciChartWrapper}
@@ -62,6 +81,7 @@ const App = () => {
           shapes={exampleShapes}
           options={{
             note: '20% panel',
+            events: { onhover: handleHover },
             clipZoomToData: true,
             yAxes: STACKED_Y_AXES,
           }}
@@ -84,8 +104,8 @@ const DetectStyled = styled(Detect)(() => ({
 }));
 
 const STACKED_Y_AXES: ChartAxisConfig[] = [
-  { id: 'default', stacked: true },
-  { id: 'secondary', name: 'Secondary', stacked: true },
+  { id: 'default', stacked: true, heightWeight: 70 },
+  { id: 'secondary', name: 'Secondary', stacked: true, heightWeight: 30 },
 ];
 
 const exampleShapes: ChartShape[] = [
