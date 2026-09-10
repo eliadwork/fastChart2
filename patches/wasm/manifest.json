@@ -1,0 +1,26 @@
+{
+  "package": "scichart",
+  "version": "5.0.178",
+  "files": [
+    {
+      "file": "scichart2d.wasm",
+      "originalSha256": "ce84f530b112705fa09ecdabe64d66555f1d0c9412190c33295459c7739eedd4",
+      "patchedSha256": "56b105f34715a2e20745ca6aa844e376a5ee505c8a51aa9e3d2082108ba9086a"
+    },
+    {
+      "file": "scichart2d-nosimd.wasm",
+      "originalSha256": "e169215a81df979eea7a6d430f5651113298919df553b97bd6155e49c84fe47e",
+      "patchedSha256": "71519033b5bd0fc7ae4cf1b602bfaecd5c6cc8c60027da5fa1888b69706bbb39"
+    },
+    {
+      "file": "scichart3d.wasm",
+      "originalSha256": "1d3f3262c38655d213de8f5901ca394ca44cac32a1f0a4aac655fc70b65ac9bf",
+      "patchedSha256": "af43de2a3c583644295e5946341bcc1805c60d3e5442c0e7433f583aa8376ec0"
+    },
+    {
+      "file": "scichart3d-nosimd.wasm",
+      "originalSha256": "68b6fc7bb5602c87d3df51663e93a13cfb87a6c3955a073514008bcf62311672",
+      "patchedSha256": "8df9d9a95f065225a5a28331a4668985ca07d4d8fae04607a424b657d517f59c"
+    }
+  ]
+}
